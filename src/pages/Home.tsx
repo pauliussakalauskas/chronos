@@ -22,11 +22,15 @@ export function HomePage() {
 
   useEffect(() => {
     const storedDurations = localStorage.getItem("storedDurations");
-    if (storedDurations) {
-      setDurations(JSON.parse(storedDurations));
-    } else {
+    const durations = storedDurations
+      ? JSON.parse(storedDurations)
+      : defaultDurations;
+
+    if (!storedDurations) {
       localStorage.setItem("storedDurations", JSON.stringify(defaultDurations));
     }
+
+    setDurations(durations);
   }, []);
 
   const handleAddTimer = useCallback(
@@ -86,6 +90,8 @@ export function HomePage() {
 
   const handleStopTimer = useCallback(
     (id: number, subtype: TimerSubtype) => {
+      console.log(durations);
+      console.log("yes");
       setTimers((prevTimers) => {
         const updatedTimers = prevTimers.map((timer) => {
           if (timer.id === id) {
