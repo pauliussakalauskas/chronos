@@ -44,6 +44,7 @@ const subtypes: { [key: string]: TimerSubtype[] }[] = [
   },
   {
     "Germany Manual Standart": [
+      "Agent Referral",
       "Internal Referral",
       "Manual XReport",
       "Significant STR",
@@ -51,7 +52,6 @@ const subtypes: { [key: string]: TimerSubtype[] }[] = [
   },
   {
     "Germany Extensive": [
-      "Agent Referral",
       "Internal Referral",
       "Manual XReport",
       "Significant STR",
@@ -68,6 +68,8 @@ export function TimerTable({
 }: TimerTableProps) {
   const getSubtypes = (type: string) => {
     const subtype = subtypes.find((subtype) => subtype[type]);
+
+    console.log(subtype);
     return subtype ? subtype[type] : [];
   };
 
